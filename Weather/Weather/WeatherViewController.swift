@@ -20,11 +20,10 @@ class WeatherViewController: UIViewController {
         super.viewDidLoad()
         showAnimation()
         fetchWeather()
-        //weatherManager.fetchWeather(byCity: "seoul")
     }
     
     private func fetchWeather() {
-        weatherManager.fetchWeather(byCity: "new york") { [weak self] (result) in
+        weatherManager.fetchWeather(byCity: "seoul") { [weak self] (result) in
             guard let this = self else {return}
             switch result {
             case .success(let weatherData):
@@ -36,7 +35,6 @@ class WeatherViewController: UIViewController {
     }
     
     private func updateView(with data: WeatherData){
-        
         hideAnimation()
         temperatureLabel.text = data.main.temp.toString().appending("°C")
         conditionLabel.text = data.weather.first?.description
@@ -49,14 +47,14 @@ class WeatherViewController: UIViewController {
         conditionLabel.hideSkeleton()
     }
     
-    private func showAnimation() { //Skeleton 효과 줄 수 있음
+    private func showAnimation() { //Skeleton 효과 줄 수 있음: 은색 반짝반짝
         conditionImageView.showAnimatedSkeleton()
         temperatureLabel.showAnimatedSkeleton()
         conditionLabel.showAnimatedSkeleton()
     }
 
-    @IBAction func addLocationButtonTapped(_ sender: Any) {
-        
+    @IBAction func addCityButtonTapped(_ sender: Any) {
+        performSegue(withIdentifier: "showAddCity", sender: nil)
     }
     
     @IBAction func locaionButtonTapped(_ sender: Any) {

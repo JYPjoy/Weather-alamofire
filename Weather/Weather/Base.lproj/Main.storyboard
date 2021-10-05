@@ -60,14 +60,10 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="hrM-Ka-7ns">
-                        <barButtonItem key="leftBarButtonItem" title="Item" image="location" catalog="system" id="utp-mu-3as">
-                            <connections>
-                                <action selector="addLocationButtonTapped:" destination="BYZ-38-t0r" id="20O-gk-q1J"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="location" catalog="system" id="utp-mu-3as"/>
                         <barButtonItem key="rightBarButtonItem" title="Item" image="plus" catalog="system" id="SnH-5h-FEq">
                             <connections>
-                                <action selector="locaionButtonTapped:" destination="BYZ-38-t0r" id="LUL-da-RbA"/>
+                                <action selector="addCityButtonTapped:" destination="BYZ-38-t0r" id="qyA-Jz-b2f"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -75,27 +71,94 @@
                         <outlet property="conditionImageView" destination="lS5-px-8nJ" id="kTU-bh-uXd"/>
                         <outlet property="conditionLabel" destination="soD-DZ-2hI" id="3HK-hv-oHX"/>
                         <outlet property="temperatureLabel" destination="XN4-QF-a9S" id="6cy-zE-Ff6"/>
-                        <segue destination="K4B-lT-NI5" kind="presentation" id="0u1-bc-Q4v"/>
+                        <segue destination="K4B-lT-NI5" kind="presentation" identifier="showAddCity" modalPresentationStyle="overFullScreen" modalTransitionStyle="crossDissolve" id="0u1-bc-Q4v"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="939.13043478260875" y="69.642857142857139"/>
         </scene>
-        <!--View Controller-->
+        <!--Add City View Controller-->
         <scene sceneID="whJ-XH-KKh">
             <objects>
-                <viewController id="K4B-lT-NI5" sceneMemberID="viewController">
+                <viewController id="K4B-lT-NI5" customClass="AddCityViewController" customModule="Weather" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Gqd-dP-Mjd">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3qi-60-fe4">
+                                <rect key="frame" x="67" y="190.5" width="280" height="246"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="lnp-qp-VcA">
+                                        <rect key="frame" x="24" y="24" width="232" height="198"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter city" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CQw-aM-hZ6">
+                                                <rect key="frame" x="0.0" y="0.0" width="232" height="25"/>
+                                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="18"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SeD-Dy-Pzn">
+                                                <rect key="frame" x="0.0" y="37" width="232" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="ka4-We-gpl"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                                            </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CcJ-Xr-vRu">
+                                                <rect key="frame" x="0.0" y="89" width="232" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="oVa-UK-HYt"/>
+                                                </constraints>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="Search">
+                                                    <backgroundConfiguration key="background">
+                                                        <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                                    </backgroundConfiguration>
+                                                    <fontDescription key="titleFontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="18"/>
+                                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </buttonConfiguration>
+                                            </button>
+                                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="1fS-HI-HUB">
+                                                <rect key="frame" x="0.0" y="141" width="232" height="20"/>
+                                            </activityIndicatorView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QHH-EK-rrx">
+                                                <rect key="frame" x="0.0" y="173" width="232" height="25"/>
+                                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="18"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="lnp-qp-VcA" firstAttribute="leading" secondItem="3qi-60-fe4" secondAttribute="leading" constant="24" id="Gi1-oF-jkL"/>
+                                    <constraint firstAttribute="width" constant="280" id="UOh-9Z-nDQ"/>
+                                    <constraint firstItem="lnp-qp-VcA" firstAttribute="top" secondItem="3qi-60-fe4" secondAttribute="top" constant="24" id="row-bC-2g0"/>
+                                    <constraint firstAttribute="bottom" secondItem="lnp-qp-VcA" secondAttribute="bottom" constant="24" id="t5X-rR-OoQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="lnp-qp-VcA" secondAttribute="trailing" constant="24" id="wuK-WL-JNj"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="eLB-Do-cqc"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="3qi-60-fe4" firstAttribute="centerX" secondItem="Gqd-dP-Mjd" secondAttribute="centerX" id="5I4-8A-26h"/>
+                            <constraint firstItem="3qi-60-fe4" firstAttribute="centerY" secondItem="Gqd-dP-Mjd" secondAttribute="centerY" multiplier="0.7" id="vMv-iM-3JI"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pUj-IL-lo2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1794" y="70"/>
+            <point key="canvasLocation" x="1792.753623188406" y="69.642857142857139"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="mYg-zF-121">
@@ -122,6 +185,12 @@
         <image name="plus" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGroupedBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
