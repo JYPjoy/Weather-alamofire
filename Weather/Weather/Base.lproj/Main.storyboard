@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Ek9-qh-j43">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -108,17 +109,19 @@
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CcJ-Xr-vRu">
                                                 <rect key="frame" x="0.0" y="89" width="232" height="40"/>
+                                                <color key="backgroundColor" systemColor="systemGreenColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="oVa-UK-HYt"/>
                                                 </constraints>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="Search">
-                                                    <backgroundConfiguration key="background">
-                                                        <color key="backgroundColor" systemColor="systemGreenColor"/>
-                                                    </backgroundConfiguration>
+                                                    <backgroundConfiguration key="background"/>
                                                     <fontDescription key="titleFontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="18"/>
                                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="searchButtonTapped:" destination="K4B-lT-NI5" eventType="touchUpInside" id="Bv7-KY-PE7"/>
+                                                </connections>
                                             </button>
                                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="1fS-HI-HUB">
                                                 <rect key="frame" x="0.0" y="141" width="232" height="20"/>
@@ -155,6 +158,12 @@
                             <constraint firstItem="3qi-60-fe4" firstAttribute="centerY" secondItem="Gqd-dP-Mjd" secondAttribute="centerY" multiplier="0.7" id="vMv-iM-3JI"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="activityIndicatorView" destination="1fS-HI-HUB" id="7U7-h1-UB9"/>
+                        <outlet property="cityTextField" destination="SeD-Dy-Pzn" id="Bye-tr-ncI"/>
+                        <outlet property="searchButton" destination="CcJ-Xr-vRu" id="i7u-h0-KS4"/>
+                        <outlet property="statusLabel" destination="QHH-EK-rrx" id="NBR-Ss-zP8"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pUj-IL-lo2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
