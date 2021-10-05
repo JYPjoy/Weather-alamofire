@@ -83,6 +83,7 @@ class WeatherViewController: UIViewController {
             locationManager.requestLocation()
         case .notDetermined:
             locationManager.requestWhenInUseAuthorization()
+            locationManager.requestLocation()
         default:
             promptForLocationPermission()
         }
@@ -113,7 +114,12 @@ extension WeatherViewController: WeatherViewControllerDelegate {
 
 extension WeatherViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
+        if let location = locations.last {
+            manager.stopUpdatingLocation()
+            let lat = location.coordinate.latitude
+            let lng = location.coordinate.longitude
+            print(lat, lng)
+        }
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
