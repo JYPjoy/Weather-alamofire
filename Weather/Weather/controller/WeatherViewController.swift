@@ -7,6 +7,7 @@
 
 import UIKit
 import SkeletonView
+import CoreLocation
 
 protocol WeatherViewControllerDelegate: class {
     func didUpdateWeatherFromSearch(model: WeatherModel)
@@ -19,6 +20,11 @@ class WeatherViewController: UIViewController {
     @IBOutlet weak var conditionLabel: UILabel!
     
     private let weatherManager = WeatherManager()
+    private lazy var locationManager: CLLocationManager = {
+        let manager = CLLocationManager()
+        manager.delegate = self
+        return manager
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,6 +78,26 @@ class WeatherViewController: UIViewController {
     }
     
     @IBAction func locaionButtonTapped(_ sender: Any) {
+        switch CLLocationManager.authorizationStatus(){
+        case .authorizedAlways, .authorizedWhenInUse:
+            locationManager.requestLocation()
+        case .notDetermined:
+            locationManager.requestWhenInUseAuthorization()
+        default:
+            promptForLocationPermission()
+        }
+    }
+    
+    private func promptForLocationPermission() {
+        let alertController = UIAlertController(title: "Requires Location Permission", message: "Would you like to enable location permission in Settings", preferredStyle: .alert)
+        let enableAction = UIAlertAction(title: "Go to Settings", style: .default) { _ in
+            guard let settingsURL = URL(string: UIApplication.openSettingsURLString) else {return}
+            UIApplication.shared.open(settingsURL, options: [:], completionHandler: nil)
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alertController.addAction(enableAction)
+        alertController.addAction(cancelAction)
+        self.present(alertController, animated: true, completion: nil)
     }
 }
 
@@ -81,6 +107,16 @@ extension WeatherViewController: WeatherViewControllerDelegate {
             guard let this = self else {return}
             this.updateView(with: model)
         })
+        
+    }
+}
+
+extension WeatherViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         
     }
 }

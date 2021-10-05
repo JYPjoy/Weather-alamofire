@@ -61,7 +61,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="hrM-Ka-7ns">
-                        <barButtonItem key="leftBarButtonItem" title="Item" image="location" catalog="system" id="utp-mu-3as"/>
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="location" catalog="system" id="utp-mu-3as">
+                            <connections>
+                                <action selector="locaionButtonTapped:" destination="BYZ-38-t0r" id="Tzi-ae-9xv"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Item" image="plus" catalog="system" id="SnH-5h-FEq">
                             <connections>
                                 <action selector="addCityButtonTapped:" destination="BYZ-38-t0r" id="qyA-Jz-b2f"/>

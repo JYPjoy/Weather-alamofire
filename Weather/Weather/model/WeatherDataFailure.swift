@@ -1,5 +1,5 @@
 //
-//  WeathreDataFailure.swift
+//  WeatherDataFailure.swift
 //  Weather
 //
 //  Created by Jiyoung Park on 2021/10/05.
